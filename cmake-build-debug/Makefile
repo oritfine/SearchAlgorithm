@@ -123,32 +123,140 @@ ex4/fast:
 	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/build
 .PHONY : ex4/fast
 
-FileCache.o: FileCache.cpp.o
+FileCacheManager.o: FileCacheManager.cpp.o
 
-.PHONY : FileCache.o
+.PHONY : FileCacheManager.o
 
 # target to build an object file
-FileCache.cpp.o:
-	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/FileCache.cpp.o
-.PHONY : FileCache.cpp.o
+FileCacheManager.cpp.o:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/FileCacheManager.cpp.o
+.PHONY : FileCacheManager.cpp.o
 
-FileCache.i: FileCache.cpp.i
+FileCacheManager.i: FileCacheManager.cpp.i
 
-.PHONY : FileCache.i
+.PHONY : FileCacheManager.i
 
 # target to preprocess a source file
-FileCache.cpp.i:
-	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/FileCache.cpp.i
-.PHONY : FileCache.cpp.i
+FileCacheManager.cpp.i:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/FileCacheManager.cpp.i
+.PHONY : FileCacheManager.cpp.i
 
-FileCache.s: FileCache.cpp.s
+FileCacheManager.s: FileCacheManager.cpp.s
 
-.PHONY : FileCache.s
+.PHONY : FileCacheManager.s
 
 # target to generate assembly for a file
-FileCache.cpp.s:
-	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/FileCache.cpp.s
-.PHONY : FileCache.cpp.s
+FileCacheManager.cpp.s:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/FileCacheManager.cpp.s
+.PHONY : FileCacheManager.cpp.s
+
+MySerialServer.o: MySerialServer.cpp.o
+
+.PHONY : MySerialServer.o
+
+# target to build an object file
+MySerialServer.cpp.o:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/MySerialServer.cpp.o
+.PHONY : MySerialServer.cpp.o
+
+MySerialServer.i: MySerialServer.cpp.i
+
+.PHONY : MySerialServer.i
+
+# target to preprocess a source file
+MySerialServer.cpp.i:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/MySerialServer.cpp.i
+.PHONY : MySerialServer.cpp.i
+
+MySerialServer.s: MySerialServer.cpp.s
+
+.PHONY : MySerialServer.s
+
+# target to generate assembly for a file
+MySerialServer.cpp.s:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/MySerialServer.cpp.s
+.PHONY : MySerialServer.cpp.s
+
+MyTestClientHandler.o: MyTestClientHandler.cpp.o
+
+.PHONY : MyTestClientHandler.o
+
+# target to build an object file
+MyTestClientHandler.cpp.o:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/MyTestClientHandler.cpp.o
+.PHONY : MyTestClientHandler.cpp.o
+
+MyTestClientHandler.i: MyTestClientHandler.cpp.i
+
+.PHONY : MyTestClientHandler.i
+
+# target to preprocess a source file
+MyTestClientHandler.cpp.i:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/MyTestClientHandler.cpp.i
+.PHONY : MyTestClientHandler.cpp.i
+
+MyTestClientHandler.s: MyTestClientHandler.cpp.s
+
+.PHONY : MyTestClientHandler.s
+
+# target to generate assembly for a file
+MyTestClientHandler.cpp.s:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/MyTestClientHandler.cpp.s
+.PHONY : MyTestClientHandler.cpp.s
+
+Point.o: Point.cpp.o
+
+.PHONY : Point.o
+
+# target to build an object file
+Point.cpp.o:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/Point.cpp.o
+.PHONY : Point.cpp.o
+
+Point.i: Point.cpp.i
+
+.PHONY : Point.i
+
+# target to preprocess a source file
+Point.cpp.i:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/Point.cpp.i
+.PHONY : Point.cpp.i
+
+Point.s: Point.cpp.s
+
+.PHONY : Point.s
+
+# target to generate assembly for a file
+Point.cpp.s:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/Point.cpp.s
+.PHONY : Point.cpp.s
+
+State.o: State.cpp.o
+
+.PHONY : State.o
+
+# target to build an object file
+State.cpp.o:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/State.cpp.o
+.PHONY : State.cpp.o
+
+State.i: State.cpp.i
+
+.PHONY : State.i
+
+# target to preprocess a source file
+State.cpp.i:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/State.cpp.i
+.PHONY : State.cpp.i
+
+State.s: State.cpp.s
+
+.PHONY : State.s
+
+# target to generate assembly for a file
+State.cpp.s:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/State.cpp.s
+.PHONY : State.cpp.s
 
 StringReverser.o: StringReverser.cpp.o
 
@@ -213,9 +321,21 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... ex4"
 	@echo "... edit_cache"
-	@echo "... FileCache.o"
-	@echo "... FileCache.i"
-	@echo "... FileCache.s"
+	@echo "... FileCacheManager.o"
+	@echo "... FileCacheManager.i"
+	@echo "... FileCacheManager.s"
+	@echo "... MySerialServer.o"
+	@echo "... MySerialServer.i"
+	@echo "... MySerialServer.s"
+	@echo "... MyTestClientHandler.o"
+	@echo "... MyTestClientHandler.i"
+	@echo "... MyTestClientHandler.s"
+	@echo "... Point.o"
+	@echo "... Point.i"
+	@echo "... Point.s"
+	@echo "... State.o"
+	@echo "... State.i"
+	@echo "... State.s"
 	@echo "... StringReverser.o"
 	@echo "... StringReverser.i"
 	@echo "... StringReverser.s"

@@ -13,11 +13,11 @@
 
 using namespace std;
 
-template <class T>
+template <class P, class S>
 class CacheManager {
 public:
-    virtual void insert(string key, T obj) = 0;
-    virtual T get(string key) = 0;
+    virtual void insert(P key, S obj) = 0;
+    virtual S get(P key) = 0;
 
 };
 #endif //UNTITLED2_EX2_H

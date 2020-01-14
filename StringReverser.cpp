@@ -4,13 +4,11 @@
 
 #include "StringReverser.h"
 
-template <class Solution,class Problem>
 
-Solution StringReverser<Solution, Problem>::solve(Problem p) {
-    string problem = to_string(p);
+string StringReverser::solve(string p) {
     string solution = "";
-    for (int i = problem.size() - 1; i >= 0; i--) {
-        solution += problem[i];
+    for (int i = p.size() - 1; i >= 0; i--) {
+        solution += p[i];
     }
-    return (Solution) solution;
+    return solution;
 }

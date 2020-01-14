@@ -10,10 +10,9 @@
 
 using namespace std;
 
-template <class Solution, class Problem>
-class StringReverser: public Solver<Solution, Problem> {
+class StringReverser: public Solver<string, string> {
 public:
-    Solution solve(Problem p);
+    string solve(string p) override;
 };
 
 #endif //EX4_STRINGREVERSER_H
