@@ -96,6 +96,12 @@
 		<Unit filename="/home/orit/CLionProjects/ex4/FileCacheManager.h">
 			<Option target="ex4"/>
 		</Unit>
+		<Unit filename="/home/orit/CLionProjects/ex4/MatrixProblem.cpp">
+			<Option target="ex4"/>
+		</Unit>
+		<Unit filename="/home/orit/CLionProjects/ex4/MatrixProblem.h">
+			<Option target="ex4"/>
+		</Unit>
 		<Unit filename="/home/orit/CLionProjects/ex4/MySerialServer.cpp">
 			<Option target="ex4"/>
 		</Unit>

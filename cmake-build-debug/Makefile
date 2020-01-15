@@ -150,6 +150,33 @@ FileCacheManager.cpp.s:
 	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/FileCacheManager.cpp.s
 .PHONY : FileCacheManager.cpp.s
 
+MatrixProblem.o: MatrixProblem.cpp.o
+
+.PHONY : MatrixProblem.o
+
+# target to build an object file
+MatrixProblem.cpp.o:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/MatrixProblem.cpp.o
+.PHONY : MatrixProblem.cpp.o
+
+MatrixProblem.i: MatrixProblem.cpp.i
+
+.PHONY : MatrixProblem.i
+
+# target to preprocess a source file
+MatrixProblem.cpp.i:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/MatrixProblem.cpp.i
+.PHONY : MatrixProblem.cpp.i
+
+MatrixProblem.s: MatrixProblem.cpp.s
+
+.PHONY : MatrixProblem.s
+
+# target to generate assembly for a file
+MatrixProblem.cpp.s:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/MatrixProblem.cpp.s
+.PHONY : MatrixProblem.cpp.s
+
 MySerialServer.o: MySerialServer.cpp.o
 
 .PHONY : MySerialServer.o
@@ -324,6 +351,9 @@ help:
 	@echo "... FileCacheManager.o"
 	@echo "... FileCacheManager.i"
 	@echo "... FileCacheManager.s"
+	@echo "... MatrixProblem.o"
+	@echo "... MatrixProblem.i"
+	@echo "... MatrixProblem.s"
 	@echo "... MySerialServer.o"
 	@echo "... MySerialServer.i"
 	@echo "... MySerialServer.s"
