@@ -18,12 +18,12 @@ class MatrixProblem: public Searchable<Point*> {
     State<Point*> *goalState;
 public:
     MatrixProblem(list<string> input, int num_lines);
+    void set_problem_states(string s, char sign);
     void createMatrix(list<string> input, int num_lines);
     State<Point*>* getInitialState();
     bool isStateGoal(State<Point*>* s);
     vector<State<Point*>*> getAllPossibleStates(State<Point*>* s);
 
 };
-
 
 #endif //EX4_MATRIXPROBLEM_H

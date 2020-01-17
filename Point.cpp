@@ -16,3 +16,15 @@ int Point::get_x() {
 int Point::get_y() {
     return this->y;
 }
+
+bool Point::operator==(const Point &p) {
+    return this->x == p.x && this->y == p.y;
+}
+
+bool Point::operator!=(const Point &p) {
+    return this->x != p.x && this->y == p.y;
+}
+
+string Point::to_string() {
+    return "(" + ::to_string(this->x) + ", " + ::to_string(this->y) + ")";
+}

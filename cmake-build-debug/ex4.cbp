@@ -84,6 +84,21 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/orit/CLionProjects/ex4/AbstSearcher.h">
+			<Option target="ex4"/>
+		</Unit>
+		<Unit filename="/home/orit/CLionProjects/ex4/BFS.cpp">
+			<Option target="ex4"/>
+		</Unit>
+		<Unit filename="/home/orit/CLionProjects/ex4/BFS.h">
+			<Option target="ex4"/>
+		</Unit>
+		<Unit filename="/home/orit/CLionProjects/ex4/BestFS.cpp">
+			<Option target="ex4"/>
+		</Unit>
+		<Unit filename="/home/orit/CLionProjects/ex4/BestFS.h">
+			<Option target="ex4"/>
+		</Unit>
 		<Unit filename="/home/orit/CLionProjects/ex4/CacheManager.h">
 			<Option target="ex4"/>
 		</Unit>
@@ -102,16 +117,22 @@
 		<Unit filename="/home/orit/CLionProjects/ex4/MatrixProblem.h">
 			<Option target="ex4"/>
 		</Unit>
+		<Unit filename="/home/orit/CLionProjects/ex4/MyClientHandler.cpp">
+			<Option target="ex4"/>
+		</Unit>
+		<Unit filename="/home/orit/CLionProjects/ex4/MyClientHandler.h">
+			<Option target="ex4"/>
+		</Unit>
 		<Unit filename="/home/orit/CLionProjects/ex4/MySerialServer.cpp">
 			<Option target="ex4"/>
 		</Unit>
 		<Unit filename="/home/orit/CLionProjects/ex4/MySerialServer.h">
 			<Option target="ex4"/>
 		</Unit>
-		<Unit filename="/home/orit/CLionProjects/ex4/MyTestClientHandler.cpp">
+		<Unit filename="/home/orit/CLionProjects/ex4/OA.cpp">
 			<Option target="ex4"/>
 		</Unit>
-		<Unit filename="/home/orit/CLionProjects/ex4/MyTestClientHandler.h">
+		<Unit filename="/home/orit/CLionProjects/ex4/OA.h">
 			<Option target="ex4"/>
 		</Unit>
 		<Unit filename="/home/orit/CLionProjects/ex4/Point.cpp">
@@ -129,6 +150,12 @@
 		<Unit filename="/home/orit/CLionProjects/ex4/Server.h">
 			<Option target="ex4"/>
 		</Unit>
+		<Unit filename="/home/orit/CLionProjects/ex4/Solution.cpp">
+			<Option target="ex4"/>
+		</Unit>
+		<Unit filename="/home/orit/CLionProjects/ex4/Solution.h">
+			<Option target="ex4"/>
+		</Unit>
 		<Unit filename="/home/orit/CLionProjects/ex4/Solver.h">
 			<Option target="ex4"/>
 		</Unit>
@@ -142,6 +169,12 @@
 			<Option target="ex4"/>
 		</Unit>
 		<Unit filename="/home/orit/CLionProjects/ex4/StringReverser.h">
+			<Option target="ex4"/>
+		</Unit>
+		<Unit filename="/home/orit/CLionProjects/ex4/TestClientHandler.cpp">
+			<Option target="ex4"/>
+		</Unit>
+		<Unit filename="/home/orit/CLionProjects/ex4/TestClientHandler.h">
 			<Option target="ex4"/>
 		</Unit>
 		<Unit filename="/home/orit/CLionProjects/ex4/main.cpp">

@@ -6,12 +6,14 @@
 #define EX4_SEARCHER_H
 
 #include "Searchable.h"
+#include "Solution.h"
+#include "Solver.h"
 
 using namespace std;
 
-template <class T, class S>
+template <class T>
 class Searcher {
 public:
-    S search(Searchable<T> searchable);
+    virtual Solution<State<T>*>* search(Searchable<T> *searchable) = 0;
 };
 #endif //EX4_SEARCHER_H

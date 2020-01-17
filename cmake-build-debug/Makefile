@@ -123,6 +123,60 @@ ex4/fast:
 	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/build
 .PHONY : ex4/fast
 
+BFS.o: BFS.cpp.o
+
+.PHONY : BFS.o
+
+# target to build an object file
+BFS.cpp.o:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/BFS.cpp.o
+.PHONY : BFS.cpp.o
+
+BFS.i: BFS.cpp.i
+
+.PHONY : BFS.i
+
+# target to preprocess a source file
+BFS.cpp.i:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/BFS.cpp.i
+.PHONY : BFS.cpp.i
+
+BFS.s: BFS.cpp.s
+
+.PHONY : BFS.s
+
+# target to generate assembly for a file
+BFS.cpp.s:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/BFS.cpp.s
+.PHONY : BFS.cpp.s
+
+BestFS.o: BestFS.cpp.o
+
+.PHONY : BestFS.o
+
+# target to build an object file
+BestFS.cpp.o:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/BestFS.cpp.o
+.PHONY : BestFS.cpp.o
+
+BestFS.i: BestFS.cpp.i
+
+.PHONY : BestFS.i
+
+# target to preprocess a source file
+BestFS.cpp.i:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/BestFS.cpp.i
+.PHONY : BestFS.cpp.i
+
+BestFS.s: BestFS.cpp.s
+
+.PHONY : BestFS.s
+
+# target to generate assembly for a file
+BestFS.cpp.s:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/BestFS.cpp.s
+.PHONY : BestFS.cpp.s
+
 FileCacheManager.o: FileCacheManager.cpp.o
 
 .PHONY : FileCacheManager.o
@@ -177,6 +231,33 @@ MatrixProblem.cpp.s:
 	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/MatrixProblem.cpp.s
 .PHONY : MatrixProblem.cpp.s
 
+MyClientHandler.o: MyClientHandler.cpp.o
+
+.PHONY : MyClientHandler.o
+
+# target to build an object file
+MyClientHandler.cpp.o:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/MyClientHandler.cpp.o
+.PHONY : MyClientHandler.cpp.o
+
+MyClientHandler.i: MyClientHandler.cpp.i
+
+.PHONY : MyClientHandler.i
+
+# target to preprocess a source file
+MyClientHandler.cpp.i:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/MyClientHandler.cpp.i
+.PHONY : MyClientHandler.cpp.i
+
+MyClientHandler.s: MyClientHandler.cpp.s
+
+.PHONY : MyClientHandler.s
+
+# target to generate assembly for a file
+MyClientHandler.cpp.s:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/MyClientHandler.cpp.s
+.PHONY : MyClientHandler.cpp.s
+
 MySerialServer.o: MySerialServer.cpp.o
 
 .PHONY : MySerialServer.o
@@ -204,32 +285,32 @@ MySerialServer.cpp.s:
 	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/MySerialServer.cpp.s
 .PHONY : MySerialServer.cpp.s
 
-MyTestClientHandler.o: MyTestClientHandler.cpp.o
+OA.o: OA.cpp.o
 
-.PHONY : MyTestClientHandler.o
+.PHONY : OA.o
 
 # target to build an object file
-MyTestClientHandler.cpp.o:
-	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/MyTestClientHandler.cpp.o
-.PHONY : MyTestClientHandler.cpp.o
+OA.cpp.o:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/OA.cpp.o
+.PHONY : OA.cpp.o
 
-MyTestClientHandler.i: MyTestClientHandler.cpp.i
+OA.i: OA.cpp.i
 
-.PHONY : MyTestClientHandler.i
+.PHONY : OA.i
 
 # target to preprocess a source file
-MyTestClientHandler.cpp.i:
-	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/MyTestClientHandler.cpp.i
-.PHONY : MyTestClientHandler.cpp.i
+OA.cpp.i:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/OA.cpp.i
+.PHONY : OA.cpp.i
 
-MyTestClientHandler.s: MyTestClientHandler.cpp.s
+OA.s: OA.cpp.s
 
-.PHONY : MyTestClientHandler.s
+.PHONY : OA.s
 
 # target to generate assembly for a file
-MyTestClientHandler.cpp.s:
-	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/MyTestClientHandler.cpp.s
-.PHONY : MyTestClientHandler.cpp.s
+OA.cpp.s:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/OA.cpp.s
+.PHONY : OA.cpp.s
 
 Point.o: Point.cpp.o
 
@@ -257,6 +338,33 @@ Point.s: Point.cpp.s
 Point.cpp.s:
 	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/Point.cpp.s
 .PHONY : Point.cpp.s
+
+Solution.o: Solution.cpp.o
+
+.PHONY : Solution.o
+
+# target to build an object file
+Solution.cpp.o:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/Solution.cpp.o
+.PHONY : Solution.cpp.o
+
+Solution.i: Solution.cpp.i
+
+.PHONY : Solution.i
+
+# target to preprocess a source file
+Solution.cpp.i:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/Solution.cpp.i
+.PHONY : Solution.cpp.i
+
+Solution.s: Solution.cpp.s
+
+.PHONY : Solution.s
+
+# target to generate assembly for a file
+Solution.cpp.s:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/Solution.cpp.s
+.PHONY : Solution.cpp.s
 
 State.o: State.cpp.o
 
@@ -312,6 +420,33 @@ StringReverser.cpp.s:
 	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/StringReverser.cpp.s
 .PHONY : StringReverser.cpp.s
 
+TestClientHandler.o: TestClientHandler.cpp.o
+
+.PHONY : TestClientHandler.o
+
+# target to build an object file
+TestClientHandler.cpp.o:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/TestClientHandler.cpp.o
+.PHONY : TestClientHandler.cpp.o
+
+TestClientHandler.i: TestClientHandler.cpp.i
+
+.PHONY : TestClientHandler.i
+
+# target to preprocess a source file
+TestClientHandler.cpp.i:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/TestClientHandler.cpp.i
+.PHONY : TestClientHandler.cpp.i
+
+TestClientHandler.s: TestClientHandler.cpp.s
+
+.PHONY : TestClientHandler.s
+
+# target to generate assembly for a file
+TestClientHandler.cpp.s:
+	$(MAKE) -f CMakeFiles/ex4.dir/build.make CMakeFiles/ex4.dir/TestClientHandler.cpp.s
+.PHONY : TestClientHandler.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -348,27 +483,42 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... ex4"
 	@echo "... edit_cache"
+	@echo "... BFS.o"
+	@echo "... BFS.i"
+	@echo "... BFS.s"
+	@echo "... BestFS.o"
+	@echo "... BestFS.i"
+	@echo "... BestFS.s"
 	@echo "... FileCacheManager.o"
 	@echo "... FileCacheManager.i"
 	@echo "... FileCacheManager.s"
 	@echo "... MatrixProblem.o"
 	@echo "... MatrixProblem.i"
 	@echo "... MatrixProblem.s"
+	@echo "... MyClientHandler.o"
+	@echo "... MyClientHandler.i"
+	@echo "... MyClientHandler.s"
 	@echo "... MySerialServer.o"
 	@echo "... MySerialServer.i"
 	@echo "... MySerialServer.s"
-	@echo "... MyTestClientHandler.o"
-	@echo "... MyTestClientHandler.i"
-	@echo "... MyTestClientHandler.s"
+	@echo "... OA.o"
+	@echo "... OA.i"
+	@echo "... OA.s"
 	@echo "... Point.o"
 	@echo "... Point.i"
 	@echo "... Point.s"
+	@echo "... Solution.o"
+	@echo "... Solution.i"
+	@echo "... Solution.s"
 	@echo "... State.o"
 	@echo "... State.i"
 	@echo "... State.s"
 	@echo "... StringReverser.o"
 	@echo "... StringReverser.i"
 	@echo "... StringReverser.s"
+	@echo "... TestClientHandler.o"
+	@echo "... TestClientHandler.i"
+	@echo "... TestClientHandler.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

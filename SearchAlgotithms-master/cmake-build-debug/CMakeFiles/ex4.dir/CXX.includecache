@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/yana/Desktop/ex4/State.cpp
+State.h
+/home/yana/Desktop/ex4/State.h
+
+/home/yana/Desktop/ex4/State.h
+string
+-
+
