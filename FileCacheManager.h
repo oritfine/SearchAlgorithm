@@ -12,18 +12,19 @@
 #include <iterator>
 #include <fstream>
 #include "CacheManager.h"
+#include "Solution.h"
 #define CAPACITY_SIZE 5
 using namespace std;
 
-template <class P, class S>
+template <class S>
 
-class FileCacheManager: public CacheManager<P,S> {
+class FileCacheManager: public CacheManager<string ,S> {
 private:
-    unordered_map<P,pair<S,list<string>::iterator>> cache;
+    unordered_map<string,pair<S,list<string>::iterator>> cache;
     list<string> items;
     unsigned int myCapacity = CAPACITY_SIZE;
 public:
-    void insert(P key, S obj) {
+    void insert(string key, S obj) {
         if (items.size() == myCapacity) {
             string eraseKey = items.back();
             items.remove(items.back());
@@ -47,12 +48,12 @@ public:
         out_file.close();
 
     }
-    S get(P key) {
+    S get(string key) {
         if (cache.find(key) == cache.end()) {
             string fileName = key + ".txt";
             fstream in_file(fileName, ios::in | ios::binary);
             if(!in_file) {
-                return "";
+                return NULL;
             } else {
                 S obj;
                 in_file.read( (char *) & obj, sizeof(obj));

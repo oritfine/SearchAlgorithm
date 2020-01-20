@@ -1,13 +1,13 @@
 //
-// Created by orit on 17/01/2020.
+// Created by yana on 20/01/2020.
 //
 
-#include "BFS.h"
-Solution<State<Point *> *> * BFS::search(Searchable<State<Point *> *> *searchable) {
+#include "DFS.h"
+Solution<State<Point *> *> * DFS::search(Searchable<State<Point *> *> *searchable) {
     this->d.push(searchable->getInitialState());
     int size = d.size();
     while (size > 0) {
-        State<Point*> *n = d.front();
+        State<Point*> *n = d.top();
         d.pop();
         closed.push_back(n);
         if (searchable->isStateGoal(n)) {
@@ -26,7 +26,7 @@ Solution<State<Point *> *> * BFS::search(Searchable<State<Point *> *> *searchabl
 }
 
 
-bool BFS::isInClosedList(State<Point *> *s) {
+bool DFS::isInClosedList(State<Point *> *s) {
     for (auto it = closed.begin(); it != closed.end(); ++it) {
         if (s->getState()->get_x() == (*it)->getState()->get_x()) {
             if (s->getState()->get_y() == (*it)->getState()->get_y()) {
@@ -38,7 +38,7 @@ bool BFS::isInClosedList(State<Point *> *s) {
 }
 
 
-Solution<State<Point *> *> * BFS::backTrace(State<Point *> *goal) {
+Solution<State<Point *> *> * DFS::backTrace(State<Point *> *goal) {
     int sum = 0;
     Solution<State<Point*>*> *sol = new Solution<State<Point*>*>();
     sol->addSol(goal);
@@ -55,4 +55,3 @@ Solution<State<Point *> *> * BFS::backTrace(State<Point *> *goal) {
     sol->setNumOfNodes(this->getNumOfNodesEvaluated());
     return sol;
 }
-

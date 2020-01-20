@@ -1,15 +1,16 @@
 //
-// Created by yana on 14/01/2020.
+// Created by yana on 20/01/2020.
 //
 
-#ifndef EX4_BESTFS_H
-#define EX4_BESTFS_H
-
+#ifndef EX4_DFS_H
+#define EX4_DFS_H
 #include <string>
 #include "AbstSearcher.h"
 #include "Point.h"
 
-class BestFS: public AbstSearcher<Searchable<State<Point*>*>*, Solution<State<Point*>*>*, State<Point*>* > {
+class DFS: public AbstSearcher<Searchable<State<Point*>*>*, Solution<State<Point*>*>*, State<Point*>* > {
+private:
+    stack<State<Point*>*> d;
     vector<State<Point*>*> closed;
 public:
     Solution<State<Point*>*>* search(Searchable<State<Point*>*> *searchable);
@@ -18,4 +19,4 @@ public:
 };
 
 
-#endif //EX4_BESTFS_H
+#endif //EX4_DFS_H

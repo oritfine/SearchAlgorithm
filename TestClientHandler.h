@@ -8,7 +8,7 @@
 #include "Solver.h"
 #include "CacheManager.h"
 
-class TestClientHandler: public ClientHandler {
+class TestClientHandler: public ClientHandler<string, string, string, string> {
 private:
     Solver<string, string> *solver;
     CacheManager<string, string> *cm;

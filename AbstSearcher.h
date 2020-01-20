@@ -8,15 +8,20 @@
 #include <stack>
 #include "Searcher.h"
 
-template <class T>
-class AbstSearcher: public Searcher<T>{
+template <class P, class S, class T>
+class AbstSearcher: public Searcher<P, S>{
+    struct compare {
+        bool operator()(const T& a, const T& b) {
+            return a > b;
+        }
+    };
 private:
     int evaluatedNodes = 0;
-    priority_queue <State<T>*, vector<State<T>*>, greater<State<T>*>> openQueue;
+    priority_queue <T, vector<T>, compare> openQueue;
 protected:
-    State<T>* popOpenList() {
+    T popOpenList() {
         this->evaluatedNodes++;
-        State<T>* t = this->openQueue.top();
+       T t = this->openQueue.top();
         this->openQueue.pop();
         return t;
     }
@@ -26,24 +31,36 @@ protected:
     int getNumOfNodesEvaluated() {
         return this->evaluatedNodes;
     }
-    void addToOpenList(State<T> *t) {
+    void addToOpenList(T t) {
         this->openQueue.push(t);
     }
-    bool isInOpenList(State<T> *t) {
-        priority_queue <State<T>*, vector<State<T>*>, greater<State<T>*>> tmp;
+    bool isInOpenList(T t) {
+        bool result = false;
+        T temp;
+        priority_queue <T, vector<T>, greater<T>> tmp;
         bool res = false;
-        for (auto it = openQueue.begin(); it != openQueue.end(); ++it) {
-            if (t == *it) {
-                res = true;
+        int size = this->openListSize();
+        while (size > 0) {
+            temp = this->openQueue.top();
+            if (t == temp) {
+                result = true;
                 break;
             }
-            tmp.push(this->openQueue.pop());
+            this->openQueue.pop();
+            tmp.push(temp);
+            size = this->openListSize();
         }
-        for (auto itTmp = tmp.begin(); itTmp != tmp.end(); ++itTmp) {
-            this->openQueue.push(tmp.pop());
+        int sizeTemp = tmp.size();
+        while (sizeTemp > 0) {
+            temp = tmp.top();
+            tmp.pop();
+            this->openQueue.push(temp);
+            sizeTemp = tmp.size();
         }
-        return res;
+        return result;
     }
-    virtual Solution<State<T>*>* search(Searchable<T> *searchable) = 0;
+    virtual S search(P searchable) = 0;
 };
+
+
 #endif //EX4_ABSTSEARCHER_H

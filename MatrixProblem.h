@@ -10,9 +10,10 @@
 #include "State.h"
 #include "Point.h"
 #include "Searchable.h"
+#include <functional>
 using namespace std;
 
-class MatrixProblem: public Searchable<Point*> {
+class MatrixProblem: public Searchable<State<Point*>*> {
     vector<vector<State<Point*>*>> matrix;
     State<Point*> *initialState;
     State<Point*> *goalState;
@@ -23,7 +24,6 @@ public:
     State<Point*>* getInitialState();
     bool isStateGoal(State<Point*>* s);
     vector<State<Point*>*> getAllPossibleStates(State<Point*>* s);
-
 };
 
 #endif //EX4_MATRIXPROBLEM_H

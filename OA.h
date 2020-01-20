@@ -8,29 +8,32 @@
 
 #include "Searcher.h"
 // Problem - the matrix , Solution - , Algorithm - bfs,dfs..
-template <class P, class T, class A>
-class OA: public Solver<P,T>{
-    Searchable<P> *searchable;
-    Searcher<A> *searcher;
+template <class P, class S, class T>
+class OA: public Solver<P, S>{
+    Searchable<T> *searchable;
+    Searcher<P, S> *searcher;
 public:
-    OA();
-    void set_searcher(Searcher<A> searcher1) {
+    OA (Searcher<P, S> *searcher1) {
+        this->searcher = searcher1;
+    }
+    void set_searcher(Searcher<P, S> *searcher1) {
         this->searcher = searcher1;
     }
 
-    void set_searchable(Searchable<P> searchable1) {
-        this->searcher = searchable1;
+    void set_searchable(Searchable<T> *searchable1) {
+        this->searchable = searchable1;
     }
 
-    Searcher<A> get_searcher() {
+    Searcher<P, S>* get_searcher() {
         return this->searcher;
     }
 
-    Searchable<P> get_searchable() {
+    Searchable<T>* get_searchable() {
         return this->searchable;
     }
 
-    Solution<T> solve(P p) {
+    S solve(Searchable<T> *p) {
+        this->set_searchable(p);
         return this->searcher->search(this->searchable);
     }
 };

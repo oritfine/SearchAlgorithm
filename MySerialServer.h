@@ -5,17 +5,27 @@
 #ifndef EX4_MYSERIALSERVER_H
 #define EX4_MYSERIALSERVER_H
 
+#include <iostream>
 #include "Server.h"
 #include "ClientHandler.h"
+#include "Searchable.h"
+#include "Solution.h"
+#include "Point.h"
 
-class MySerialServer: public server_side::Server {
+using namespace std;
+
+class MySerialServer: public server_side::Server<Searchable<State<Point*>*>*, Solution<State<Point*>*>*, string, string> {
 private:
     sockaddr_in address{};
     volatile bool to_stop = false;
 public:
-    void open(int port, ClientHandler *c) override;
-    void acceptClient(int socketfd, ClientHandler *c);
+    void open(int port, ClientHandler<Searchable<State<Point*>*>*, Solution<State<Point*>*>*, string, string> *c);
+
     void stop();
+
+    void acceptClient(int socketfd, ClientHandler<Searchable<State<Point*>*>*, Solution<State<Point*>*>*, string, string> *c);
+
+
 };
 
 
