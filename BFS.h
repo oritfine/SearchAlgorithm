@@ -7,15 +7,15 @@
 
 #include <string>
 #include "AbstSearcher.h"
+#include "Point.h"
 
-template <class T>
-class BFS: public AbstSearcher<T> {
-    vector<State<T>*> closed;
+class BFS: public AbstSearcher<Searchable<State<Point*>*>*, Solution<State<Point*>*>*, State<Point*>* > {
+    queue<State<Point*>*> d;
+    vector<State<Point*>*> closed;
 public:
-
-    Solution<State<T>*>* search(Searchable<T> *searchable) {
-    }
-
+    Solution<State<Point*>*>* search(Searchable<State<Point*>*> *searchable);
+    bool isInClosedList(State<Point*> *s);
+    Solution<State<Point*>*>* backTrace(State<Point*> *goal);
 };
 
 

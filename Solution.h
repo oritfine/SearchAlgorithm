@@ -4,18 +4,22 @@
 
 #ifndef EX4_SOLUTION_H
 #define EX4_SOLUTION_H
-#include <list>
+#include <vector>
 using namespace std;
 template <class T>
 class Solution {
 private:
-    list<T> sol;
+    vector<T> sol;
+    int numNodes;
 public:
     void addSol(T sol) {
         this->sol.push_back(sol);
     }
-    list<T> getSol() {
+    vector<T> getSol() {
         return this->sol;
+    }
+    void setNumOfNodes(int nodes) {
+        this->numNodes = nodes;
     }
 };
 

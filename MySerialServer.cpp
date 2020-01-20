@@ -12,7 +12,7 @@
 #include "ClientHandler.h"
 
 using namespace std;
-void MySerialServer::open(int port, ClientHandler *c) {
+void MySerialServer::open(int port, ClientHandler<Searchable<State<Point*>*>*, Solution<State<Point*>*>*, string, string> *c) {
     int socketfd = socket(AF_INET, SOCK_STREAM, 0);
     if (socketfd == -1) {
         //error
@@ -45,7 +45,7 @@ void MySerialServer::stop() {
     this->to_stop = true;
 }
 
-void MySerialServer::acceptClient(int socketfd, ClientHandler *c) {
+void MySerialServer::acceptClient(int socketfd, ClientHandler<Searchable<State<Point*>*>*, Solution<State<Point*>*>*, string, string> *c) {
     struct timeval timeout;
     int rc;
     fd_set master_set;

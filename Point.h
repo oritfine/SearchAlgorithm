@@ -16,7 +16,6 @@ public:
     int get_y();
     bool operator==(const Point& p);
     bool operator!=(const Point& p);
-    string to_string();
 };
 
 

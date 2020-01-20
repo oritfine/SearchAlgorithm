@@ -3,13 +3,20 @@
 //
 
 #include "MatrixProblem.h"
+MatrixProblem::MatrixProblem(list<string> input, int num_lines) {
+    createMatrix(input, num_lines);
+}
+
 State<Point *> * MatrixProblem::getInitialState() {
     return this->initialState;
 }
 
-bool MatrixProblem::isStateGoal(State<Point *> *s) {
-    if (s == this->goalState) {
-        return true;
+bool MatrixProblem::isStateGoal(State<Point*> *s) {
+
+    if (s->getState()->get_x() == this->goalState->getState()->get_x()) {
+        if (s->getState()->get_y() == this->goalState->getState()->get_y()) {
+            return true;
+        }
     }
     return false;
 }
@@ -20,60 +27,31 @@ vector<State<Point *> *> MatrixProblem::getAllPossibleStates(State<Point *> *s) 
     int num_cols = matrix.front().size();
     int x = s->getState()->get_x();
     int y = s->getState()->get_y();
-    if (x == 0) {
-        State<Point*> *down = new State<Point*>(*matrix[x][y + 1]);
-        result.push_back(down);
-        //down, right
-        if (y == 0) {
-            State<Point*> *right = new State<Point*>(*matrix[x + 1][y]);
-            result.push_back(right);
-            //down, right
-        } else if (y == num_cols) {
-            State<Point*> *left = new State<Point*>(*matrix[x - 1][y]);
-            result.push_back(left);
-            // down, left
-        } else {
-            State<Point*> *right = new State<Point*>(*matrix[x + 1][y]);
-            State<Point*> *left = new State<Point*>(*matrix[x - 1][y]);
-            result.push_back(right);
-            result.push_back(left);
-            // down, right, left
+    if (x + 1 < num_lines) {
+        State<Point *> *down = this->matrix[x + 1][y];
+        if (down->getCostsThisFar() != -1) {
+            result.push_back(down);
         }
     }
-    if (x == num_lines) {
-        State<Point*> *up = new State<Point*>(*matrix[x][y - 1]);
-        result.push_back(up);
-        if (y == 0) {
-            State<Point*> *right = new State<Point*>(*matrix[x + 1][y]);
-            result.push_back(right);
-            // up, right
-        } else if (y == num_cols) {
-            State<Point*> *left = new State<Point*>(*matrix[x - 1][y]);
-            result.push_back(left);
-            // up, left
-        } else {
-            State<Point*> *right = new State<Point*>(*matrix[x + 1][y]);
-            State<Point*> *left = new State<Point*>(*matrix[x - 1][y]);
-            result.push_back(right);
-            result.push_back(left);
-            // up, right, left
+    if (x - 1 >= 0) {
+        State<Point *> *up = this->matrix[x - 1][y];
+        if (up->getCostsThisFar() != -1) {
+            result.push_back(up);
         }
-    } else {
-        State<Point*> *up = new State<Point*>(*matrix[x][y - 1]);
-        State<Point*> *down = new State<Point*>(*matrix[x][y + 1]);
-        State<Point*> *right = new State<Point*>(*matrix[x + 1][y]);
-        State<Point*> *left = new State<Point*>(*matrix[x - 1][y]);
-        result.push_back(up);
-        result.push_back(down);
-        result.push_back(right);
-        result.push_back(left);
-        // up, down, right, left
+    }
+    if (y - 1 >= 0) {
+        State<Point *> *left = this->matrix[x][y - 1];
+        if (left->getCostsThisFar() != -1) {
+            result.push_back(left);
+        }
+    }
+    if (y + 1 < num_cols) {
+        State<Point *> *right = this->matrix[x][y + 1];
+        if (right->getCostsThisFar() != -1) {
+            result.push_back(right);
+        }
     }
     return result;
-}
-
-MatrixProblem::MatrixProblem(list<string> input, int num_lines) {
-    createMatrix(input, num_lines);
 }
 
 void MatrixProblem::set_problem_states(string s, char sign) {
@@ -82,19 +60,16 @@ void MatrixProblem::set_problem_states(string s, char sign) {
     s.erase(0, s.find(",") + 1);
     string string_y = s.substr(0, s.find(","));
     double y = stod(string_y);
-    State<Point*> *state = new State<Point*> (new Point(x,y));
+    State<Point*> *state = matrix[x][y];
     state->setDir(NOT);
-    state->setCostsThisFar(0);
-    state->setCameFrom(NULL);
     if (sign == 'i') {
         this->initialState = state;
-        initialState->setCost(0);
+        state->setCameFrom(NULL);
     } else {
         this->goalState = state;
-        double cost =matrix[x][y]->getCost();
-        goalState->setCost(cost);
+//        double cost =matrix[x][y]->getCost();
+//        goalState->setCost(cost);
     }
-    return;
 }
 
 void MatrixProblem::createMatrix(list<string> input, int num_lines) {
@@ -105,11 +80,11 @@ void MatrixProblem::createMatrix(list<string> input, int num_lines) {
         string string_line = "";
 
         // remove all spaces from string
-        for ( int i = 0; i < tmp.size(); i++) {
-            if (tmp[i] == ' ') {
+        for (char i : tmp) {
+            if (i == ' ') {
                 continue;
             }
-            string_line += tmp[i];
+            string_line += i;
         }
 
         if (row == num_lines) {
@@ -124,7 +99,7 @@ void MatrixProblem::createMatrix(list<string> input, int num_lines) {
         int col = 0;
         while (string_line.find('\n') != string::npos){
             string string_val = string_line.substr(0, string_line.find(","));
-            double val = stod(string_val);
+            int val = stoi(string_val);
             Point *p = new Point(row, col);
             State<Point*> *state = new State<Point*>(p, val);
             state->setDir(NOT);
@@ -135,7 +110,6 @@ void MatrixProblem::createMatrix(list<string> input, int num_lines) {
             }
             col++;
         }
-
         this->matrix.push_back(line_vector);
         row++;
     }

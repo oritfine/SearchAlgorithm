@@ -11,9 +11,9 @@
 
 using namespace std;
 
-template <class T>
+template <class P, class S>
 class Searcher {
 public:
-    virtual Solution<State<T>*>* search(Searchable<T> *searchable) = 0;
+    virtual S search(P searchable) = 0;
 };
 #endif //EX4_SEARCHER_H
