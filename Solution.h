@@ -11,6 +11,7 @@ class Solution {
 private:
     vector<T> sol;
     int numNodes;
+    bool isPathFound = true;
 public:
     void addSol(T sol) {
         this->sol.push_back(sol);
@@ -20,6 +21,15 @@ public:
     }
     void setNumOfNodes(int nodes) {
         this->numNodes = nodes;
+    }
+    int getNumOfNodes() {
+        return this->numNodes;
+    }
+    void PathNotFount() {
+        this->isPathFound = false;
+    }
+    bool returnIfPathFound() {
+        return this->isPathFound;
     }
 };
 

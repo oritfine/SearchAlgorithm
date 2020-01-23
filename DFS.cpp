@@ -4,25 +4,35 @@
 
 #include "DFS.h"
 Solution<State<Point *> *> * DFS::search(Searchable<State<Point *> *> *searchable) {
+    while (!d.empty()) {
+        d.pop();
+    }
+    this->closed.clear();
+    Solution<State<Point*>*> *back;
     this->d.push(searchable->getInitialState());
     int size = d.size();
+    int counter = 1;
     while (size > 0) {
         State<Point*> *n = d.top();
         d.pop();
         closed.push_back(n);
         if (searchable->isStateGoal(n)) {
-            Solution<State<Point*>*> *back = backTrace(n);
+            back = backTrace(n);
+            back->setNumOfNodes(counter);
             return back;
         }
         vector<State<Point*>*> neighbors = searchable->getAllPossibleStates(n);
         for (auto & neighbor : neighbors) {
-            if (!isInClosedList(neighbor)) {
+            if (!isInClosedList(neighbor) && !isInD(neighbor)) {
+                counter++;
                 (neighbor)->setCameFrom(n);
                 d.push(neighbor);
             }
         }
         size = d.size();
     }
+    back->PathNotFount();
+    return back;
 }
 
 
@@ -35,6 +45,31 @@ bool DFS::isInClosedList(State<Point *> *s) {
         }
     }
     return false;
+}
+
+bool DFS::isInD(State<Point *> *s) {
+    bool result = false;
+    stack<State<Point*>*> tmp;
+    State<Point *> *temp;
+    int size = this->d.size();
+    while (size > 0) {
+        temp = this->d.top();
+        if (s == temp) {
+            result = true;
+            break;
+        }
+        this->d.pop();
+        tmp.push(temp);
+        size = this->d.size();
+    }
+    int sizeTemp = tmp.size();
+    while (sizeTemp > 0) {
+        temp = tmp.top();
+        tmp.pop();
+        this->d.push(temp);
+        sizeTemp = tmp.size();
+    }
+    return result;
 }
 
 
@@ -54,4 +89,8 @@ Solution<State<Point *> *> * DFS::backTrace(State<Point *> *goal) {
     }
     sol->setNumOfNodes(this->getNumOfNodesEvaluated());
     return sol;
+}
+
+string DFS::get_name() {
+    return "DFS";
 }

@@ -44,19 +44,19 @@ public:
         if (!out_file) {
             throw "failed opening file";
         }
-        out_file.write( (char *) & obj, sizeof(obj));
+        out_file << obj;
         out_file.close();
 
     }
     S get(string key) {
+        S obj;
         if (cache.find(key) == cache.end()) {
             string fileName = key + ".txt";
             fstream in_file(fileName, ios::in | ios::binary);
             if(!in_file) {
-                return NULL;
+                return "";
             } else {
-                S obj;
-                in_file.read( (char *) & obj, sizeof(obj));
+                getline(in_file, obj);
                 in_file.close();
             }
         }
@@ -65,7 +65,7 @@ public:
         items.remove(key);
         items.push_front(key);
 
-        return cache.at(key).first;
+        return obj;
     }
 };
 

@@ -60,6 +60,7 @@ protected:
         return result;
     }
     virtual S search(P searchable) = 0;
+    virtual string get_name() = 0;
 };
 
 

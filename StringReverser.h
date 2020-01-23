@@ -13,6 +13,7 @@ using namespace std;
 class StringReverser: public Solver<string, string> {
 public:
     string solve(string p) override;
+    string get_searcher_name() override;
 };
 
 #endif //EX4_STRINGREVERSER_H

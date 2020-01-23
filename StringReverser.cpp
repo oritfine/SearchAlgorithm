@@ -12,3 +12,7 @@ string StringReverser::solve(string p) {
     }
     return solution;
 }
+
+string StringReverser::get_searcher_name() {
+    return "stringReverser";
+}

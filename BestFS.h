@@ -15,6 +15,7 @@ public:
     Solution<State<Point*>*>* search(Searchable<State<Point*>*> *searchable);
     bool isInClosedList(State<Point*> *s);
     Solution<State<Point*>*>* backTrace(State<Point*> *goal);
+    string get_name();
 };
 
 

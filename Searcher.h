@@ -13,7 +13,10 @@ using namespace std;
 
 template <class P, class S>
 class Searcher {
+protected:
+    string searcher_name;
 public:
     virtual S search(P searchable) = 0;
+    virtual string get_name() = 0;
 };
 #endif //EX4_SEARCHER_H

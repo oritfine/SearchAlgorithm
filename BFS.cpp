@@ -4,25 +4,35 @@
 
 #include "BFS.h"
 Solution<State<Point *> *> * BFS::search(Searchable<State<Point *> *> *searchable) {
+    while (!d.empty()) {
+        d.pop();
+    }
+    this->closed.clear();
     this->d.push(searchable->getInitialState());
     int size = d.size();
+    Solution<State<Point*>*> *back;
+    int counter = 1;
     while (size > 0) {
         State<Point*> *n = d.front();
         d.pop();
         closed.push_back(n);
         if (searchable->isStateGoal(n)) {
-            Solution<State<Point*>*> *back = backTrace(n);
+            back = backTrace(n);
+            back->setNumOfNodes(counter);
             return back;
         }
         vector<State<Point*>*> neighbors = searchable->getAllPossibleStates(n);
         for (auto & neighbor : neighbors) {
-            if (!isInClosedList(neighbor)) {
+            if (!isInClosedList(neighbor) && !isInD(neighbor)) {
+                counter++;
                 (neighbor)->setCameFrom(n);
                 d.push(neighbor);
             }
         }
         size = d.size();
     }
+    back->PathNotFount();
+    return back;
 }
 
 
@@ -35,6 +45,31 @@ bool BFS::isInClosedList(State<Point *> *s) {
         }
     }
     return false;
+}
+
+bool BFS::isInD(State<Point *> *s) {
+    bool result = false;
+    queue<State<Point*>*> tmp;
+    State<Point *> *temp;
+    int size = this->d.size();
+    while (size > 0) {
+        temp = this->d.front();
+        if (s == temp) {
+            result = true;
+            break;
+        }
+        this->d.pop();
+        tmp.push(temp);
+        size = this->d.size();
+    }
+    int sizeTemp = tmp.size();
+    while (sizeTemp > 0) {
+        temp = tmp.front();
+        tmp.pop();
+        this->d.push(temp);
+        sizeTemp = tmp.size();
+    }
+    return result;
 }
 
 
@@ -56,3 +91,6 @@ Solution<State<Point *> *> * BFS::backTrace(State<Point *> *goal) {
     return sol;
 }
 
+string BFS::get_name() {
+    return "BFS";
+}

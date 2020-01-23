@@ -36,6 +36,9 @@ public:
         this->set_searchable(p);
         return this->searcher->search(this->searchable);
     }
+    string get_searcher_name() {
+        return this->searcher->get_name();
+    }
 };
 
 

@@ -43,10 +43,11 @@ void MyClientHandler::handleClient(int socket) {
     hash<std::string> str_hash;
     int i = 0, valread;
     list<string> linesOfMatrix;
-    char buffer[MAXREAD];
     string str = "", readyLine = "", to_send = "", id_for_matrix = "";
+    char buffer[MAXREAD];
     while (readyLine.compare("end\n") != 0) {
         while (str.find('\n') == string::npos) {
+            bzero(buffer, MAXREAD);
             valread = read(socket, buffer, MAXREAD);
             id_for_matrix.append(buffer); // to create its id, save all the matrix for the hash
             str.append(buffer);
@@ -59,35 +60,42 @@ void MyClientHandler::handleClient(int socket) {
     }
     line_counter -= 3;
     Searchable<State<Point *> *> *matrix = new MatrixProblem(linesOfMatrix, line_counter);
-    //to_send = cm->get(to_string(str_hash(id_for_matrix)));
+    string key_matrix = to_string(str_hash(id_for_matrix)) + this->solver->get_searcher_name();
+    to_send = cm->get(key_matrix);
     if (to_send.empty()) {
         Solution<State<Point *> *> *sol = this->solver->solve(matrix);
-        addDirections(sol, matrix->getInitialState());
-        vector<State<Point *> *> temp = sol->getSol();
-        int size = temp.size();
-        for (int i = size - 2; i >= 1; i--) {
-            switch (temp[i]->getDir()) {
-                case UP:
-                    to_send += "Up ";
-                    break;
-                case DOWN:
-                    to_send += "Down ";
-                    break;
-                case LEFT:
-                    to_send += "Left ";
-                    break;
-                case RIGHT:
-                    to_send += "Right ";
-                    break;
-                default:
-                    break;
-            }
-            to_send += "(" + to_string(temp[i - 1]->getCostsThisFar()) + ")";
-            if (i != 1) {
-                to_send += ", ";
+        if (!sol->returnIfPathFound()) {
+            to_send = "Path Not Found";
+        }
+        else {
+            addDirections(sol, matrix->getInitialState());
+            vector<State<Point *> *> temp = sol->getSol();
+            int size = temp.size();
+            for (int i = size - 2; i >= 1; i--) {
+                switch (temp[i]->getDir()) {
+                    case UP:
+                        to_send += "Up ";
+                        break;
+                    case DOWN:
+                        to_send += "Down ";
+                        break;
+                    case LEFT:
+                        to_send += "Left ";
+                        break;
+                    case RIGHT:
+                        to_send += "Right ";
+                        break;
+                    default:
+                        break;
+                }
+                to_send += "(" + to_string(temp[i - 1]->getCostsThisFar()) + ")";
+                if (i != 1) {
+                    to_send += ", ";
+                }
             }
         }
-        cm->insert(to_string(str_hash(id_for_matrix)), to_send);
+        cout << sol->getNumOfNodes() << endl;
+        cm->insert(key_matrix, to_send);
     }
     const char *c = to_send.c_str();
     send(socket, c, strlen(c), 0);

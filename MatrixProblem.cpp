@@ -99,7 +99,7 @@ void MatrixProblem::createMatrix(list<string> input, int num_lines) {
         int col = 0;
         while (string_line.find('\n') != string::npos){
             string string_val = string_line.substr(0, string_line.find(","));
-            int val = stoi(string_val);
+            int val = stod(string_val);
             Point *p = new Point(row, col);
             State<Point*> *state = new State<Point*>(p, val);
             state->setDir(NOT);
