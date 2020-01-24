@@ -76,10 +76,10 @@ public:
     void setCostsThisFar(int CostsThisFar) {
         this->allCostsThisFar += CostsThisFar;
     }
-    void set_f_score(int score) {
+    void set_h_score(int score) {
         this->h_score = score;
     }
-    int get_f_score() {
+    int get_h_score() {
         return this->h_score;
     }
     void setDir(Direction direction) {

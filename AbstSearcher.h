@@ -16,29 +16,29 @@ class AbstSearcher: public Searcher<P, S>{
         }
     };
 private:
-    int evaluatedNodes = 0;
     priority_queue <T, vector<T>, compare> openQueue;
 protected:
-    T popOpenList() {
+    int evaluatedNodes = 0;
+    virtual T popOpenList() {
         this->evaluatedNodes++;
        T t = this->openQueue.top();
         this->openQueue.pop();
         return t;
     }
-    int openListSize() {
+    virtual int openListSize() {
         return this->openQueue.size();
     }
-    int getNumOfNodesEvaluated() {
+    virtual int getNumOfNodesEvaluated() {
         return this->evaluatedNodes;
     }
-    void addToOpenList(T t) {
+    virtual void addToOpenList(T t) {
         this->openQueue.push(t);
     }
 
     virtual bool isInOpenList(T t) {
         bool result = false;
         T temp;
-        priority_queue <T, vector<T>, greater<T>> tmp;
+        priority_queue <T, vector<T>, compare> tmp;
         bool res = false;
         int size = this->openListSize();
         while (size > 0) {
@@ -60,7 +60,7 @@ protected:
         }
         return result;
     }
-    void updateOpenList() {
+    virtual void updateOpenList() {
         vector<T> tmp;
         int size_queue = openListSize();
         while (size_queue > 0) {

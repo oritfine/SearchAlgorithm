@@ -11,7 +11,7 @@
 #include "Astar.h"
 
 int main(/*int argc, char* argv[]*/) {
-    AbstSearcher<Searchable<State<Point*>*>*, Solution<State<Point*>*>*, State<Point*>*> *search = new DFS();
+    AbstSearcher<Searchable<State<Point*>*>*, Solution<State<Point*>*>*, State<Point*>*> *search = new Astar();
     Solver<Searchable<State<Point*>*>*, Solution<State<Point*>*>*> *solver = new OA<Searchable<State<Point*>*>*, Solution<State<Point*>*>*, State<Point*>*>(search);
     CacheManager<string , string> *cm = new FileCacheManager<string>();
     ClientHandler<Searchable<State<Point*>*> *, Solution<State<Point*>*>*, string, string>* c = new MyClientHandler(solver, cm);

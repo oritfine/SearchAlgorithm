@@ -3,29 +3,55 @@
 //
 
 #include <map>
+#include <iostream>
 #include "Astar.h"
 
-State<Point *> *Astar::get_state_min_f() {
-    int size = open.size();
-    int min = 0;
-    State<Point *> *res = NULL;
-    std::vector<State<Point *> *>::iterator it = open.begin();
-    std::vector<State<Point *> *>::iterator it_erase = it;
-    for (int i = 0; i < size; i++, it++) {
-        int current_f_score = f_scores.find(open[i])->second;
-        if (i == 0) {
-            res = open[i];
-            min = current_f_score;
-            continue;
+State<Point *> * Astar::popOpenList() {
+    this->evaluatedNodes++;
+    State<Point *> * t = this->open.top();
+    this->open.pop();
+    return t;
+}
+
+bool Astar::isInOpenList(State<Point *> *t) {
+    bool result = false;
+    State<Point *>* temp;
+    priority_queue <State<Point *>*, vector<State<Point *>*>, compareA> tmp;
+    int size = this->open.size();
+    while (size > 0) {
+        temp = this->open.top();
+        if (t == temp) {
+            result = true;
+            break;
         }
-        if (current_f_score < min) {
-            res = open[i];
-            min = current_f_score;
-            it_erase = it;
-        }
+        this->open.pop();
+        tmp.push(temp);
+        size = this->open.size();
     }
-    open.erase(it_erase);
-    return res;
+    int sizeTemp = tmp.size();
+    while (sizeTemp > 0) {
+        temp = tmp.top();
+        tmp.pop();
+        this->open.push(temp);
+        sizeTemp = tmp.size();
+    }
+    return result;
+}
+
+void Astar::updateOpenList() {
+    vector<State<Point*>*> tmp;
+    int size_queue = this->open.size();
+    while (size_queue > 0) {
+        tmp.push_back(this->open.top());
+        this->open.pop();
+        size_queue = this->open.size();
+    }
+    int size_vec = tmp.size();
+    while (size_vec > 0) {
+        this->open.push(tmp.back());
+        tmp.pop_back();
+        size_vec = tmp.size();
+    }
 }
 
 int Astar::get_heuristic(Point *current) {
@@ -36,39 +62,33 @@ int Astar::get_heuristic(Point *current) {
 
 Solution<State<Point *> *>* Astar::search(Searchable<State<Point *> *> *searchable) {
     this->goal = searchable->getGoalState();
-    State<Point *> *init = searchable->getInitialState();
-    int g_score = init->getCostsThisFar();
-
-    init->set_f_score(get_heuristic(init->getState()) + g_score);
-    addToOpenList(searchable->getInitialState());
-    int size = this->openListSize() > 0;
+    this->open.push(searchable->getInitialState());
+    int size = !this->open.empty();
     while (size) {
         State<Point *> *n = popOpenList();
-        n->set_f_score(get_heuristic(n->getState()));
+        n->set_h_score(get_heuristic(n->getState()));
         closed.push_back(n);
         if (searchable->isStateGoal(n)) {
             Solution<State<Point *> *> *back = backTrace(n);
             return back;
         }
-
         vector<State<Point *> *> neighbors = searchable->getAllPossibleStates(n);
         for (auto &neighbor : neighbors) {
-            neighbor->set_f_score(get_heuristic(neighbor->getState()));
-            int tentative_g_score = n->getCostsThisFar() + neighbor->getCost();
-            int tentative_f_score = tentative_g_score + neighbor->get_f_score();
-            int curr_f_score = neighbor->getCostsThisFar() + n->get_f_score();
             if (!isInOpenList(neighbor) && !isInClosedList(neighbor)) {
                 (neighbor)->setCameFrom(n);
+                neighbor->set_h_score(get_heuristic(neighbor->getState()));
                 (neighbor)->setCostsThisFar(n->getCostsThisFar());
-                addToOpenList(neighbor);
+                this->open.push(neighbor);
             }
-            else if (tentative_f_score < curr_f_score) {
+            else if (neighbor->getCostsThisFar() + neighbor->get_h_score() >
+                      n->getCostsThisFar() + neighbor->getCost() + n->get_h_score()) {
                 neighbor->setCameFrom(n);
+                neighbor->set_h_score(get_heuristic(neighbor->getState()));
                 neighbor->setCostsThisFar(n->getCostsThisFar());
                 this->updateOpenList();
             }
         }
-        size = this->openListSize() > 0;
+        size = !this->open.empty();
     }
     Solution<State<Point*>*>* back2;
     back2->PathNotFount();
@@ -77,9 +97,9 @@ Solution<State<Point *> *>* Astar::search(Searchable<State<Point *> *> *searchab
 
 bool Astar::isInClosedList(State<Point *> *s) {
 
-    for (auto it = closed.begin(); it != closed.end(); ++it) {
-        if (s->getState()->get_x() == (*it)->getState()->get_x()) {
-            if (s->getState()->get_y() == (*it)->getState()->get_y()) {
+    for (auto & it : closed) {
+        if (s->getState()->get_x() == it->getState()->get_x()) {
+            if (s->getState()->get_y() == it->getState()->get_y()) {
                 return true;
             }
         }
