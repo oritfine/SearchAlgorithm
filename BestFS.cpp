@@ -1,15 +1,15 @@
 #include "AbstSearcher.h"
 #include "BestFS.h"
+
 Solution<State<Point *> *> * BestFS::search(Searchable<State<Point *> *> *searchable) {
     addToOpenList(searchable->getInitialState());
     int size;
-    Solution<State<Point*>*>* back;
     size = this->openListSize() > 0;
     while(size) {
         State<Point*> *n = this->popOpenList();
         closed.push_back(n);
         if (searchable->isStateGoal(n)) {
-            back = backTrace(n);
+            Solution<State<Point*>*>* back = backTrace(n);
             return back;
         }
         vector<State<Point*> *> neighbors = searchable->getAllPossibleStates(n);
@@ -19,20 +19,17 @@ Solution<State<Point *> *> * BestFS::search(Searchable<State<Point *> *> *search
                 (neighbor)->setCostsThisFar(n->getCostsThisFar());
                 addToOpenList(neighbor);
             }
-            else if (neighbor->getCostsThisFar() >= n->getCostsThisFar() + neighbor->getCost()) {
-//                if (!isInOpenList(neighbor) && !isInClosedList(neighbor)) {
-//                    addToOpenList(neighbor);
-//                }
-//                else {
-                    neighbor->setCameFrom(n);
-                    neighbor->setCostsThisFar(n->getCostsThisFar());
-                ////}
+            else if (neighbor->getCostsThisFar() > n->getCostsThisFar() + neighbor->getCost()) {
+                neighbor->setCameFrom(n);
+                neighbor->setCostsThisFar(n->getCostsThisFar());
+                this->updateOpenList();
             }
         }
         size = this->openListSize() > 0;
     }
-    back->PathNotFount();
-    return back;
+    Solution<State<Point*>*>* back2;
+    back2->PathNotFount();
+    return back2;
 }
 
 

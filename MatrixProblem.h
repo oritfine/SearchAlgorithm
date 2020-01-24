@@ -22,6 +22,7 @@ public:
     void set_problem_states(string s, char sign);
     void createMatrix(list<string> input, int num_lines);
     State<Point*>* getInitialState();
+    State<Point*>* getGoalState();
     bool isStateGoal(State<Point*>* s);
     vector<State<Point*>*> getAllPossibleStates(State<Point*>* s);
 };

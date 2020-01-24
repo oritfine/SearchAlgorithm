@@ -11,6 +11,10 @@ State<Point *> * MatrixProblem::getInitialState() {
     return this->initialState;
 }
 
+State<Point *> * MatrixProblem::getGoalState() {
+    return this->initialState;
+}
+
 bool MatrixProblem::isStateGoal(State<Point*> *s) {
 
     if (s->getState()->get_x() == this->goalState->getState()->get_x()) {

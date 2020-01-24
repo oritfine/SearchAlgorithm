@@ -34,7 +34,8 @@ protected:
     void addToOpenList(T t) {
         this->openQueue.push(t);
     }
-    bool isInOpenList(T t) {
+
+    virtual bool isInOpenList(T t) {
         bool result = false;
         T temp;
         priority_queue <T, vector<T>, greater<T>> tmp;
@@ -59,6 +60,22 @@ protected:
         }
         return result;
     }
+    void updateOpenList() {
+        vector<T> tmp;
+        int size_queue = openListSize();
+        while (size_queue > 0) {
+            tmp.push_back(openQueue.top());
+            openQueue.pop();
+            size_queue = openListSize();
+        }
+        int size_vec = tmp.size();
+        while (size_vec > 0) {
+            openQueue.push(tmp.back());
+            tmp.pop_back();
+            size_vec = tmp.size();
+        }
+    }
+
     virtual S search(P searchable) = 0;
     virtual string get_name() = 0;
 };

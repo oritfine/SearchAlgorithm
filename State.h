@@ -11,6 +11,7 @@
 using namespace std;
 typedef enum {NOT = -1, DOWN, UP, RIGHT, LEFT} Direction;
 
+
 template <class T>
 class State {
     T state;
@@ -18,6 +19,7 @@ class State {
     int allCostsThisFar;
     State<T>* cameFrom = NULL;
     Direction dir;
+    int h_score;
 public:
     explicit State(const State<T> &t) {
         this->state = t.state;
@@ -73,6 +75,12 @@ public:
     }
     void setCostsThisFar(int CostsThisFar) {
         this->allCostsThisFar += CostsThisFar;
+    }
+    void set_f_score(int score) {
+        this->h_score = score;
+    }
+    int get_f_score() {
+        return this->h_score;
     }
     void setDir(Direction direction) {
         this->dir = direction;

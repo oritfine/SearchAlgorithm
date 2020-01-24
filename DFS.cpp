@@ -15,6 +15,7 @@ Solution<State<Point *> *> * DFS::search(Searchable<State<Point *> *> *searchabl
     while (size > 0) {
         State<Point*> *n = d.top();
         d.pop();
+        counter++;
         closed.push_back(n);
         if (searchable->isStateGoal(n)) {
             back = backTrace(n);
@@ -24,7 +25,6 @@ Solution<State<Point *> *> * DFS::search(Searchable<State<Point *> *> *searchabl
         vector<State<Point*>*> neighbors = searchable->getAllPossibleStates(n);
         for (auto & neighbor : neighbors) {
             if (!isInClosedList(neighbor) && !isInD(neighbor)) {
-                counter++;
                 (neighbor)->setCameFrom(n);
                 d.push(neighbor);
             }
