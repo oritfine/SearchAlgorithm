@@ -1,23 +1,19 @@
 //
-// Created by yana on 12/01/2020.
+// Created by yana on 25/01/2020.
 //
 
-#include <sys/socket.h>
-#include <rpc/types.h>
-#include <iostream>
 #include <thread>
-#include <mutex>
+#include <vector>
 #include <unistd.h>
-#include "MySerialServer.h"
-#include "ClientHandler.h"
+#include "MyParallelServer.h"
 
-using namespace std;
-void MySerialServer::open(int numClients,int port, ClientHandler<Searchable<State<Point*>*>*, Solution<State<Point*>*>*, string, string> *c) {
+void MyParallelServer::open(int numClients,int port, ClientHandler<Searchable<State<Point *> *> *, Solution<State<Point *> *> *, string, string> *c) {
     int socketfd = socket(AF_INET, SOCK_STREAM, 0);
     if (socketfd == -1) {
         //error
         std::cerr << "Could not create a socket" << std::endl;
     }
+    vector<thread*> threads;
     //bind socket to IP address
     // we first need to create the sockaddr obj.
     //sockaddr_in address; //in means IP4
@@ -32,20 +28,24 @@ void MySerialServer::open(int numClients,int port, ClientHandler<Searchable<Stat
         std::cerr << "Could not bind the socket to an IP" << std::endl;
     }
     //making socket listen to the port
-    if (listen(socketfd, 5) == -1) { //can also set to SOMAXCON (max connections)
+    if (listen(socketfd, numClients) == -1) { //can also set to SOMAXCON (max connections)
         std::cerr << "Error during listening command" << std::endl;
     } else {
         std::cout << "Server is now listening ..." << std::endl;
     }
-    auto *t1 = new thread(&MySerialServer::acceptClient, this, socketfd, c);
-    t1->join();
+    int size = threads.size();
+    while (size < numClients) {
+        thread* t = new thread(&MyParallelServer::acceptClient, this, socketfd, c->clone());
+        threads.push_back(t);
+        size = threads.size();
+    }
+    for (int i = 0; i < numClients; i++) {
+        threads[i]->join();
+    }
+    this->stop();
 }
 
-void MySerialServer::stop() {
-    this->to_stop = true;
-}
-
-void MySerialServer::acceptClient(int socketfd, ClientHandler<Searchable<State<Point*>*>*, Solution<State<Point*>*>*, string, string> *c) {
+void MyParallelServer::acceptClient(int socketfd, ClientHandler<Searchable<State<Point*>*>*, Solution<State<Point*>*>*, string, string> *c) {
     struct timeval timeout;
     int rc;
     fd_set master_set;
@@ -66,13 +66,11 @@ void MySerialServer::acceptClient(int socketfd, ClientHandler<Searchable<State<P
             c->handleClient(client_socket);
         }
         else {
-            this->stop();
             break;
         }
     }
-    if (this->to_stop) {
-        close(socketfd);
-    }
 }
 
-
+void MyParallelServer::stop() {
+    this->to_stop = true;
+}

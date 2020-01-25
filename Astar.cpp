@@ -6,6 +6,10 @@
 #include <iostream>
 #include "Astar.h"
 
+Astar * Astar::clone() {
+    return new Astar();
+}
+
 State<Point *> * Astar::popOpenList() {
     this->evaluatedNodes++;
     State<Point *> * t = this->open.top();

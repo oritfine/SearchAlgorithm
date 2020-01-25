@@ -18,5 +18,6 @@ protected:
 public:
     virtual S search(P searchable) = 0;
     virtual string get_name() = 0;
+    virtual Searcher* clone() = 0;
 };
 #endif //EX4_SEARCHER_H

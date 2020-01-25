@@ -1,6 +1,10 @@
 #include "AbstSearcher.h"
 #include "BestFS.h"
 
+BestFS * BestFS::clone() {
+    return new BestFS();
+}
+
 Solution<State<Point *> *> * BestFS::search(Searchable<State<Point *> *> *searchable) {
     addToOpenList(searchable->getInitialState());
     int size;

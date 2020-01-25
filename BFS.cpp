@@ -3,6 +3,11 @@
 //
 
 #include "BFS.h"
+
+BFS * BFS::clone() {
+    return new BFS();
+}
+
 Solution<State<Point *> *> * BFS::search(Searchable<State<Point *> *> *searchable) {
     while (!d.empty()) {
         d.pop();

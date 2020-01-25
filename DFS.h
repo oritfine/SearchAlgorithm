@@ -18,6 +18,7 @@ public:
     Solution<State<Point*>*>* backTrace(State<Point*> *goal);
     bool isInD(State<Point*> *s);
     string get_name();
+    DFS* clone();
 };
 
 

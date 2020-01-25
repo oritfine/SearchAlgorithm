@@ -13,6 +13,7 @@ protected:
     Solver<P,S> *solver;
     CacheManager<Key, Value> *cm;
 public:
+    virtual ClientHandler* clone() = 0;
     virtual void handleClient(int socket) = 0;
 };
 

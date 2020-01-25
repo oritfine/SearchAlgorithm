@@ -3,6 +3,11 @@
 //
 
 #include "DFS.h"
+
+DFS * DFS::clone() {
+    return new DFS();
+}
+
 Solution<State<Point *> *> * DFS::search(Searchable<State<Point *> *> *searchable) {
     while (!d.empty()) {
         d.pop();

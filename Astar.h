@@ -29,6 +29,7 @@ public:
     Solution<State<Point*>*>* backTrace(State<Point*> *goal);
     int get_heuristic(Point* current);
     string get_name() override;
+    Astar* clone();
 };
 
 

@@ -13,6 +13,7 @@ class Solver {
 public:
     virtual S solve(P p) = 0;
     virtual string get_searcher_name() = 0;
+    virtual Solver* clone() = 0;
 };
 #endif //EX4_SOLVER_H
 

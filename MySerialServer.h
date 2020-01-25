@@ -19,7 +19,7 @@ private:
     sockaddr_in address{};
     volatile bool to_stop = false;
 public:
-    void open(int port, ClientHandler<Searchable<State<Point*>*>*, Solution<State<Point*>*>*, string, string> *c);
+    void open(int numClients, int port, ClientHandler<Searchable<State<Point*>*>*, Solution<State<Point*>*>*, string, string> *c);
 
     void stop();
 

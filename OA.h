@@ -39,6 +39,10 @@ public:
     string get_searcher_name() {
         return this->searcher->get_name();
     }
+    OA<P, S, T>* clone(){
+        OA<P, S, T>* oa = new OA<P, S, T>(this->searcher->clone());
+        return oa;
+    }
 };
 
 

@@ -11,6 +11,7 @@
 #include <list>
 #include <iterator>
 #include <fstream>
+#include <mutex>
 #include "CacheManager.h"
 #include "Solution.h"
 #define CAPACITY_SIZE 5
@@ -25,6 +26,8 @@ private:
     unsigned int myCapacity = CAPACITY_SIZE;
 public:
     void insert(string key, S obj) {
+        mutex mutexLock1;
+        mutexLock1.lock();
         if (items.size() == myCapacity) {
             string eraseKey = items.back();
             items.remove(items.back());
@@ -46,9 +49,12 @@ public:
         }
         out_file << obj;
         out_file.close();
-
+        mutexLock1.unlock();
     }
+
     S get(string key) {
+        mutex mutexLock2;
+        mutexLock2.lock();
         S obj;
         if (cache.find(key) == cache.end()) {
             string fileName = key + ".txt";
@@ -64,7 +70,7 @@ public:
         //move the object we used now to the front of the list
         items.remove(key);
         items.push_front(key);
-
+        mutexLock2.unlock();
         return obj;
     }
 };

@@ -17,7 +17,7 @@ public:
     bool isInClosedList(State<Point*> *s);
     Solution<State<Point*>*>* backTrace(State<Point*> *goal);
     string get_name();
-
+    BestFS* clone();
 };
 
 
