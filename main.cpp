@@ -15,8 +15,8 @@ int main(int argc, char* argv[]) {
     CacheManager<string , string> *cm = new FileCacheManager<string>();
     ClientHandler<Searchable<State<Point*>*> *, Solution<State<Point*>*>*, string, string>* c = new MyClientHandler(solver, cm);
     server_side::Server<Searchable<State<Point*>*>*, Solution<State<Point*>*>*, string, string> *server =  new MyParallelServer();
-    if (argv[0] != NULL) {
-        server->open(NUM_CLIENTS,atoi(argv[0]), c);
+    if (argv[1] != NULL) {
+        server->open(NUM_CLIENTS,atoi(argv[1]), c);
     }
     else {
         server->open(NUM_CLIENTS, 5700, c);
